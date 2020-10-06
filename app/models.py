@@ -42,16 +42,13 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.pass_code,password)
 
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
+return User.query.get(user_id)
 
 
     def __repr__(self):
         return f'User {self.name}'
-
-
-class Pitch(db.Model):
+        
+        class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer, primary_key = True)
@@ -60,9 +57,12 @@ class Pitch(db.Model):
     content = db.Column(db.String)
     likes = db.Column(db.Integer)
     dislikes = db.Column(db.Integer)
-
+    
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
 
 
     def save_pitch(self):

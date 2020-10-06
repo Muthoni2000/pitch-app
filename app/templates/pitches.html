@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
-
 <!---- Styles block-->
 {% block styles%}
     {{super()}}
 {% endblock %}
 <!---- Content block-->
-</div>
-{% endblock %} 
+{% block content%}
 <div class="container">
     {% for message in get_flashed_messages() %}
         <div class="alert alert-success">
@@ -16,7 +14,10 @@
         {% endfor %}
 
         <h1 class="text-center"> {{title}}</h1>
+        <div class="img">
+            <a href="/pitches"><img src="https://miro.medium.com/max/1575/0*vr9CgUKm35izlY5U.gif" width = "" height="250"></a>
+        </div>
 
 
 
-{% endblock%} 
+{% endblock%}
