@@ -1,19 +1,18 @@
-% extends 'base.html' %}
+{% extends 'base.html' %}
+
 <!---- Styles block-->
 {% block styles%}
     {{super()}}
 {% endblock %}
 
 {% block content%}
-<h1> {{title }}</h1>
 <h1> {{title}}</h1>
 <div class="row">
-{% for pitchd in tech%}
+{% for pitchd in phil%}
   <h2>{{pitchd.category}}</h2>
+ <p>{{pitchd.title}}</p>
  <p>{{pitchd.title}}</p>
   <p>{{pitchd.name}}</p>
 {% endfor%}
 </div>
-
-
 {% endblock %} 
