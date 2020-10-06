@@ -6,3 +6,4 @@ from . import main
 def index():
 
     render_template('index.html') 
+    render_template('index.html')
