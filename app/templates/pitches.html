@@ -1,23 +1,53 @@
 {% extends 'base.html' %}
+
 <!---- Styles block-->
 {% block styles%}
-    {{super()}}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Monoton|Roboto+Slab|Zilla+Slab&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bitter|Cabin|Cabin+Sketch|Fredericka+the+Great|Nunito|Patrick+Hand|Poppins|Roboto+Mono|Rubik|Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Coustard|Palanquin&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Chivo|Poppins|Prata|Special+Elite&display=swap" rel="stylesheet">
 {% endblock %}
 <!---- Content block-->
 {% block content%}
-<div class="container">
+<div class="pitch container">
     {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-        {% endfor %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
 
-        <h1 class="text-center"> {{title}}</h1>
-        <div class="img">
-            <a href="/pitches"><img src="https://miro.medium.com/max/1575/0*vr9CgUKm35izlY5U.gif" width = "" height="250"></a>
+
+    {% if pitches %}
+    {% for item in pitches %}
+    
+    <div class=" item col-md-12">
+        <h1 class="category text-center">{{item.category}}</h1>
+        <h3 class="title"> <strong>Title:   {{item.title}}</strong></h3>
+        <hr>
+        <p class="content"> {{item.content}}</p>
+        <p class="user"><span style="font-size: 25px;">Posted by:</span> <a href="{{url_for('main.user', user_id = current_user.id)}}"><button>{{item.name.name}}</button></a></strong></p>
+        <a href="{{url_for('main.like',pitch_id = item.id)}}"><button type="button" name="button" class="btn btn-success">Like</button></a>
+        <a href="{{url_for('main.dislike',pitch_id = item.id)}}"><button type="button" name="button" class="btn btn-danger">Dislikes
+        <div>
+            {% if current_user.is_authenticated %}
+                <a href="{{url_for('main.comment',pitch_id = item.id)}}"> <button type="button" name="button" class="btn btn-outline-primary btn-lg">Comments</button></a>
+                {% endif %}
         </div>
 
+    </div>
+    {% endfor %}
+
+    {% else %}
+    <h2>There are no pitches in this category</h2>
+    {% if current_user.is_authenticated %}
+    <a href="{{url_for('main.add_pitch', user_id = current_user.id)}}"><button class="btn btn-info">Add A
+            Pitch</button></a>
+    {% endif %}
+    {% endif %}
+</div>
 
 
 {% endblock%}
