@@ -1,11 +1,10 @@
 body{
-    background-image: url('https://images.unsplash.com/photo-1530543787849-128d94430c6b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
     background-repeat: no-repeat;
     background-size: cover;
 }
 .category{
     font-family: 'Fredericka the Great', cursive;
-    font-size: 100px;
+    font-size: 60px;
 }
 .title{
     font-family: 'Chivo', sans-serif;
@@ -29,4 +28,31 @@ body{
     overflow: hidden;
     transition: transform 1s;
     margin: 20px;
-} 
+}
+.user{
+    font-family: 'Chivo', sans-serif;
+    font-size: 30px;
+}
+.count{
+    font-family: 'Chivo', sans-serif;
+    font-size: 20px; 
+}
+.comment a{
+    text-align: center;
+    margin-left: 250px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    font-family: 'Chivo', sans-serif;
+}
+.profile a{
+    text-align: center;
+    margin-left: 200px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    font-family: 'Chivo', sans-serif;
+}
+.pitch{
+    text-align: center;
+}
